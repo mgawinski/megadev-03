@@ -34,3 +34,29 @@ Support desk. Decision records: whoever signed them.
 ---
 
 Exported 2026-10-04 from the `support` repo, `apps/kb/` → `src/`.
+
+## S01E03 review and rendered page
+
+- Signed source: [`src/routes/kb/incidents/4471-review/+page.svx`](src/routes/kb/incidents/4471-review/+page.svx).
+- Compiled page: [`rendered/kb/incidents/4471-review.html`](rendered/kb/incidents/4471-review.html).
+- Separate reports: [parser issue #1](https://github.com/mgawinski/megadev-03/issues/1) and [form-hint issue #2](https://github.com/mgawinski/megadev-03/issues/2).
+
+The `rendered/` directory is the static SvelteKit build, including its CSS and
+JavaScript assets. It replaces the earlier manually written HTML preview. The
+original incident page is preserved; the new signed review records the separate
+causes and the engineering update supplied by the course.
+
+### Rebuild
+
+Use Node.js 24 and npm:
+
+```sh
+npm ci --ignore-scripts
+npm run build
+npm run preview -- --host 127.0.0.1
+```
+
+Open the local preview's `/kb/incidents/4471-review` route. No public hosting or
+GitHub Pages configuration is required. Rebuilding refreshes the rendered output,
+including the review-age display. The report counts remain a snapshot of the
+export, not a live support queue.
