@@ -1,0 +1,52 @@
+---
+layout: runbook
+title: '#4471 review · separate causes, separate outcomes'
+owner: mgawinski
+status: resolved
+reviewed: 2026-10-28
+signature: mgawinski
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const signature = 'mgawinski';
+</script>
+
+This review supplements the [original incident record](/kb/incidents/4471). The desk merged different date problems into one known ticket. Matching symptoms did not mean one cause or one fix.
+
+## Counts and classification
+
+The table deduplicates the overlapping export pages by report ID before counting. It derives each cause from the tenant's saved locale, booking form, and report channel—not the reporter's browser locale or intake tag. Counts describe the 2026-10-04 export, not a live queue.
+
+<CauseTable ticket={4471} />
+
+## Separate problems and outcomes
+
+### Shared parser
+
+The shared parser reads dates month-first for tenants whose saved locale writes day first. The resulting month/day reversal is tracked in [repository issue #1](https://github.com/mgawinski/megadev-03/issues/1), with its report count above.
+
+Engineering marked this cause **fixed** when support ticket #4471 closed on 2026-10-05: `fix(dates): parse dd/mm for eu locales`. Repository issue #1 is closed as **completed**.
+
+### Booking-v3 form hint
+
+The booking-v3 form shows `MM/DD/YYYY`, while the affected tenant's locale reads the entered date day first. Form-channel reports for these tenants belong to this distinct cause, tracked in [repository issue #2](https://github.com/mgawinski/megadev-03/issues/2).
+
+Engineering marked this cause **won't fix** because the booking-v3 form was retired. Repository issue #2 is closed as **not planned**, not as a successful fix. This outcome comes from the course's engineering update, not from the older export.
+
+<Callout>
+  Closed does not always mean fixed. Keep the cause, report count, and engineering outcome together when closing each issue.
+</Callout>
+
+## What the desk should change
+
+Group reports by cause, not subject text, browser locale, or an intake guess. A matching subject can hide different causes; different subjects can describe the same cause. A report with no tenant configuration needs investigation rather than an automatic merge.
+
+The desk noted several reports as one-day moves. Their tenant settings still place them under the parser cause in the supplied classifier. Preserve that uncertainty as a note; do not invent a confirmed third cause from those symptoms alone.
+
+The existing triage page and accepted decision 0001 still describe subject-only merging. This review challenges that rule; it does not silently edit the accepted decision or claim that a replacement has been approved. Recheck those instructions before using them operationally.
+
+<RenderStamp {signature} />

@@ -1,39 +1,36 @@
 ---
 layout: runbook
-title: '#4471 · two causes in date reports'
+title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
 status: known
-reviewed: 2026-10-28
-signature: mgawinski
+reviewed: 2026-09-30
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import Callout from '#lib/kb/Callout.svelte';
-  import RenderStamp from '#lib/kb/RenderStamp.svelte';
-
-  const signature = 'mgawinski';
 </script>
 
-The desk merged date reports into one known ticket. The export contains overlapping pages, so the table deduplicates by report ID before counting. It derives each cause from the tenant's saved locale, booking form, and report channel—not the reporter's browser locale or intake tag.
+Since April, people have told us their bookings land on the wrong day: a month flipped. By
+4 October the desk had **412 reports**.
+
+**Merged as one issue.** The parser reads dates month first, and our tenants write the day
+first. The fix is queued.
 
 <Callout>
-  #4471 combines two different causes. Track each cause as its own issue; do not treat the shared ticket number or matching intake tags as proof that the reports share one bug.
+Known. One issue, one fix queued.
 </Callout>
 
 ## What was merged
 
 <CauseTable ticket={4471} />
 
-## Problems to track separately
+## Since April
 
-1. **The shared parser reads day-first dates as month-first.** This affects day-first tenants when the shared parser handles dates. The tenant and channel determine which reports belong to this cause.
-2. **The booking-v3 date hint conflicts with tenant parsing.** The form shows `MM/DD/YYYY`, while the tenant's day-first locale reads the entered date day first. This is a separate form-path problem.
+<QueueTimeline ticket={4471} />
 
-File one repository issue per cause and use the report counts in the table. Intake tags are guesses from the reporter's browser and can disagree with the tenant-based cause. The five reports in the desk's one-day-move note remain assigned by tenant settings; they are not a third cause.
+## Lessons
 
-## Why the split matters
-
-A single merged ticket hides the booking-v3 form problem among parser reports. Keeping one issue per cause gives the desk and engineering a count tied to each distinct failure mode.
-
-<RenderStamp {signature} />
+- A big ticket is mostly one bug reported many times. Merge early, count once.
+- Write the page while the queue is still in your head.
