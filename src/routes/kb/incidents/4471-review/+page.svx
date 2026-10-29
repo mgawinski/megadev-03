@@ -4,7 +4,7 @@ title: '#4471 review · separate causes, separate outcomes'
 owner: mgawinski
 status: resolved
 reviewed: 2026-10-28
-signature: mgawinski
+signature: 'v1.eyJzdWIiOiI1MDgwIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyNzIxOTAsImV4cCI6MTc5MzM1ODU5MH0.ecFdpvcNItPhY5Sd9sczlbX9Bf-PycLKd0fMz3zynTA'
 ---
 
 <script>
@@ -12,7 +12,7 @@ signature: mgawinski
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'mgawinski';
+  const signature = 'v1.eyJzdWIiOiI1MDgwIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyNzIxOTAsImV4cCI6MTc5MzM1ODU5MH0.ecFdpvcNItPhY5Sd9sczlbX9Bf-PycLKd0fMz3zynTA';
 </script>
 
 This review supplements the [original incident record](/kb/incidents/4471). The desk merged different date problems into one known ticket. Matching symptoms did not mean one cause or one fix.

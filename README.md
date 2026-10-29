@@ -37,7 +37,7 @@ Exported 2026-10-04 from the `support` repo, `apps/kb/` → `src/`.
 
 ## S01E03 review and rendered page
 
-- Review source: [`src/routes/kb/incidents/4471-review/+page.svx`](src/routes/kb/incidents/4471-review/+page.svx).
+- Course-signed source: [`src/routes/kb/incidents/4471-review/+page.svx`](src/routes/kb/incidents/4471-review/+page.svx).
 - Compiled page: [`rendered/kb/incidents/4471-review.html`](rendered/kb/incidents/4471-review.html).
 - Separate reports: [parser issue #1](https://github.com/mgawinski/megadev-03/issues/1) and [form-hint issue #2](https://github.com/mgawinski/megadev-03/issues/2).
 
@@ -45,6 +45,10 @@ The `rendered/` directory is the static SvelteKit build, including its CSS and
 JavaScript assets. It replaces the earlier manually written HTML preview. The
 original incident page is preserved; the new review records the separate
 causes and the engineering update supplied by the course.
+
+The review uses the signature issued by the course's `start-challenge` tool in
+both its frontmatter and `RenderStamp`. Rebuild after changing that signature so
+the delivered HTML carries the matching desk reference.
 
 ### View the delivered page
 
